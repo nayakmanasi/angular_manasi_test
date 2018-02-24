@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=2 user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../src/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="serviceApp">
+
+		<div ng-controller="serviceController">
+			<h1>$location service</h1>
+			<h2>Location - {{ myLocation }}</h2>
+			<hr>
+			<h1>$http service</h1>
+			<h2>http response - {{ httpRequestData }}</h2>
+			<hr>
+			<h1>$timeout service</h1>
+			<h2>This header will change after 2 seconds</h2>
+			<h1>{{myHeader}}</h1>
+			<hr>
+			<h1>$interval service</h1>
+			<h2>Time.now = {{myClock}}</h2>
+			<hr>
+			<h1>PHP code</h1>
+			<?php 
+			echo "Hello"; 
+			?>
+			<hr>
+		</div>		
+	</div>
+
+<script type="text/javascript" src="../controllers/servicecontroller.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+</body>
+</html>

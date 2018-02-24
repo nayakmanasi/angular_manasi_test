@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=2 user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../src/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="rootApp">
+		<input type="text" name="root" ng-model="name">
+		<h1> Your name is {{getName()}}</h1>
+	<div ng-controller="childScope">
+		<input type="text" name="child" ng-model="name">
+		<h2>Your name is {{getName()}}</h2>
+	</div>
+	</div>
+<script type="text/javascript" src="../controllers/scopecontroller.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+</body>
+</html>

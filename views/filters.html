@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=2 user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../src/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="filterApp">
+
+		<div ng-controller="filterController">
+			<h1>Order by Name</h1>
+			<ul>
+				<li ng-repeat="x in names | orderBy: 'name'"> 
+					{{x.name + ", " + x.country}}
+				</li>
+			</ul>
+
+			<hr>
+			<h1>Order by Country</h1>
+			<ul>
+				<li ng-repeat="x in names | orderBy: 'country'"> 
+					{{x.name + ", " + x.country}}
+				</li>
+			</ul>
+
+			<hr>
+			<h1>filter 'm'</h1>
+			<ul>
+				<li ng-repeat="x in names | filter: 'm'"> 
+					{{x.name + ", " + x.country}}
+				</li>
+			</ul>
+
+			<hr>
+			<h1>Filter based on search</h1>
+			<input type="text" name="filter" ng-model="testfilter">
+			 
+			<ul>
+				<li ng-repeat="x in names | filter: testfilter"> 
+					{{x.name + ", " + x.country}}
+				</li>
+			</ul>
+
+			<hr>
+			<h1>Sort the array based on user input</h1>
+			<select type="text" name="sort" ng-model="sortoption" ng-change="calcOrder()" ng-options="option for option in listOfOptions">
+				<!-- <option value="name" >name</option>
+				<option value="country" >country</option> -->
+			</select>
+			
+			<ul>
+				<li ng-repeat="x in names | orderBy:myOrderBy"> 
+					{{x.name + ", " + x.country}}
+				</li>
+			</ul>
+			<hr>
+			<input type="text" ng-model="multiplefilterscheck"/>
+			<h1>Currency filter - {{multiplefilterscheck | currency}}</h1>
+			<h1>Number filter - {{multiplefilterscheck | number}}</h1>
+			<h1>Date filter - {{multiplefilterscheck | date}}</h1>
+			<h1>Json filter - {{multiplefilterscheck | json}}</h1>
+			<h1>Limit to filter - {{multiplefilterscheck | limitTo: 3}}</h1>
+			<h1>uppercase - {{multiplefilterscheck | uppercase}}</h1>
+			<h1>lowercase - {{multiplefilterscheck | lowercase}}</h1>
+		</div>
+		
+	</div>
+
+<script type="text/javascript" src="../controllers/filtercontroller.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+</body>
+</html>
