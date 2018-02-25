@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=2 user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="container">
+			<div ng-app="registrationApp" >
+		
+				<form name="registrationForm" novalidate ng-controller="registrationController">
+					<h1>Registration form</h1>
+
+					<div class="form-group">
+						<label for="name">Full Name</label>
+						<input type="text" class="form-control" name="name" ng-model="user.name" placeholder="Enter your full name" ng-required="true" ng-minlength=2>
+						<span style="color: red" ng-show="registrationForm.name.$dirty && registrationForm.name.$invalid">Enter your name</span>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" name="email" ng-model="user.email" placeholder="Enter your email" ng-required="true">
+						<span style="color: red" ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">
+					  Please enter a valid email address</span>
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone Number</label>
+						<input type="number" class="form-control" name="phone" ng-model="user.phone" placeholder="Enter your phone" ng-required="true" ng-minlength=10 ng-maxlength=10>
+						<span style="color: red" ng-show="registrationForm.phone.$dirty && registrationForm.phone.$invalid">Please enter your valid phone number</span>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-1"><button class="btn btn-secondary" ng-disabled="!(registrationForm.name.$dirty || registrationForm.email.$dirty || registrationForm.phone.$dirty) " ng-click="resetForm()">Reset</button></div>
+							<div class="col-md-1"><button class="btn btn-primary" ng-disabled="registrationForm.name.$dirty && registrationForm.name.$invalid || registrationForm.email.$dirty && registrationForm.email.$invalid || registrationForm.phone.$dirty && registrationForm.phone.$invalid" ng-click="insertRecord()">Submit</button></div>
+						</div>
+						
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="container">
+			<div ng-controller="userController">
+				<h1>Users List</h1>
+				<input type="text" name="filtertext" ng-model="filtertext">
+				<table class="table table-striped">
+					<thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">First</th>
+				      <th scope="col">Last</th>
+				      <th scope="col">Handle</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="user in users | filter: filtertext">
+				      <th scope="row">{{user.id}}</th>
+				      <td>{{user.name}}</td>
+				      <td>{{user.email}}</td>
+				      <td>{{user.phone}}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="../controllers/registration.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery.min.js"></script>
+</body>
+</html>
