@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=2 user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="../src/angular.min.js"></script>
 </head>
 <body ng-app="registrationApp">
 	<div class="container">
@@ -27,15 +27,14 @@
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone Number</label>
-					<input type="number" class="form-control" name="phone" ng-model="user.phone" placeholder="Enter your phone" ng-required="true" ng-minlength=10 ng-maxlength=10>
+					<input type="number" class="form-control" name="phone" ng-model="user.phone" placeholder="Enter your phone" ng-required="true" ng-minlength=4 ng-maxlength=10>
 					<span style="color: red" ng-show="registrationForm.phone.$dirty && registrationForm.phone.$invalid">Please enter your valid phone number</span>
 				</div>
 				<div class="form-group">
 					<div class="row">
-						<div class="col-md-1"><button class="btn btn-secondary" ng-disabled="!(registrationForm.name.$dirty || registrationForm.email.$dirty || registrationForm.phone.$dirty) " ng-click="resetForm()">Reset</button></div>
-						<div class="col-md-1"><button class="btn btn-primary" ng-disabled="registrationForm.name.$dirty && registrationForm.name.$invalid || registrationForm.email.$dirty && registrationForm.email.$invalid || registrationForm.phone.$dirty && registrationForm.phone.$invalid" ng-click="insertRecord()">Submit</button></div>
+						<div class="col-md-1"><button class="btn btn-secondary" ng-disabled="registrationForm.$pristine" ng-click="resetForm()">Reset</button></div>
+						<div class="col-md-1"><button class="btn btn-primary" ng-disabled="registrationForm.$pristine || (registrationForm.$dirty && registrationForm.$invalid)" ng-click="insertRecord()">Submit</button></div>
 					</div>
-					
 				</div>
 			</form>
 		</div>

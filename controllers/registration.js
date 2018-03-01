@@ -40,19 +40,7 @@ app.controller('registrationController', function($scope, $http){
 	};
 });
 app.controller('userController', function($scope, $http){
-	// Initial data
-	$scope.persons = [
-		{name:'Jani', email:'Norway@gmail.com', phone:'234234'},
-    {name:'Carl', email:'Sweden@gmail.com', phone:'56576721'},
-    {name:'Margareth', email:'England@gmail.com', phone:'0987887'},
-    {name:'Hege', email:'Norway@gmail.com', phone:'34234'},
-    {name:'Joe', email:'Denmark@gmail.com', phone:'234234'},
-    {name:'Gustav', email:'Sweden@gmail.com', phone:'567567'},
-    {name:'Birgit', email:'Denmark@gmail.com', phone:'234234'},
-    {name:'Mary', email:'England@gmail.com', phone:'3242342'},
-    {name:'Kai', email:'Norway@gmail.com', phone:'7675665'}
-	];
-	$http.get("../phpqueries/selectusers.php").then(function (){
-			$scope.users = response.data.details;
+	$http.get("../phpqueries/selectusers.php").then(function (response){
+		$scope.persons = response.data;
 	});
 });
