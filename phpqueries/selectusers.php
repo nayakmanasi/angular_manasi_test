@@ -26,6 +26,7 @@ else{
 	$return_json = json_encode($rows);
 	
 }
+
 $conn->close();
 echo $return_json;
 ?>
