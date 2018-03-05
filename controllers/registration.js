@@ -1,6 +1,38 @@
 var app = angular.module('registrationApp',[]);
 
-app.controller('registrationController', function($scope, $http){
+app.filter('startFrom', function() {
+	return function(input, start) {
+  	start = +start; //parse to int
+    return input.slice(start);
+  }
+});
+
+app.controller('registrationController', function($scope, $http, $filter){
+	$scope.persons = [];
+	$http({
+		method : 'GET',
+		url : '../phpqueries/selectusers.php'
+		}).then(function(response){
+			$scope.persons = 	response.data;
+	});
+
+	$scope.pageSize = 4;
+	$scope.currentPage = 0;
+	$scope.getData = function(){
+		return $scope.persons;
+	};
+
+	$scope.totalSize=function(){
+		return Math.ceil($scope.persons.length);
+	}
+
+	$scope.numberOfPages=function(){
+		return Math.ceil($scope.persons.length/$scope.pageSize);                
+  };
+
+	// $scope.numberOfTexts=function(){
+	// 	return $scope.currentPage * $scope.pageSize;
+	// }
 
 	$scope.resetForm = function (){
 		$scope.user = {};
@@ -12,13 +44,6 @@ app.controller('registrationController', function($scope, $http){
  		//   control.$setViewValue(undefined);
  		// }	
 	};
-
-	$http({
-		method : 'GET',
-		url : '../phpqueries/selectusers.php'
-	}).then(function(response){
-		$scope.persons = 	response.data;
-	});
 
 	$scope.insertRecord = function(){
 		// Check for the existing email ID

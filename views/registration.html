@@ -50,21 +50,30 @@
 			<table class="table table-striped">
 				<thead>
 			    <tr>
-			      <th scope="col">#</th>
+			      <!-- <th scope="col">#</th> -->
 			      <th scope="col">Name</th>
 			      <th scope="col">Email</th>
 			      <th scope="col">Phone</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr ng-repeat="x in persons | filter: filtertext">
-			      <th scope="row"><a href='../user?{{x.id}}'>{{x.id}}</a></th>
-			      <td>{{x.name}}</td>
+			    <tr ng-repeat="x in persons | filter: filtertext | startFrom: currentPage*pageSize | limitTo: pageSize">
+			      <!-- <th scope="row"><a href='../user?{{x.id}}'>{{x.id}}</a></th> -->
+			      <td><a href='../user?{{x.id}}'>{{x.name}}</a></td>
 			      <td>{{x.email}}</td>
 			      <td>{{x.phone}}</td>
 			    </tr>
 			  </tbody>
-			</table>	
+			</table>
+			<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <!-- {{currentPage*pageSize}}-{{(currentPage*pageSize)+pageSize}} of {{totalSize()}} -->
+    <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+    <!-- <h5>{{numberOfTexts()}}</h5> -->
 		</div>
 	</div>
 

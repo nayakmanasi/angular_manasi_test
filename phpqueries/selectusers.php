@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 } 
 else{
 	$rows = array();
-	$sql = "SELECT * from USERS";
+	$sql = "SELECT id,name,email,phone from USERS";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
     // output data of each row
